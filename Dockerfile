@@ -3,7 +3,7 @@ FROM alpine:3.1
 ENV OPENRESTY_VERSION 1.7.10.1
 ENV PATH /usr/local/openresty/nginx/sbin:$PATH
 
-RUN apk --update add pcre libgcc geoip && \
+RUN apk --update add ca-certificates pcre libgcc geoip && \
     apk --update add \
     --virtual build-deps \
     build-base \
