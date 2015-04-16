@@ -12,25 +12,22 @@ mkdir -p /myapp
 ### Create a basic nginx configuration file
 
 Save this to `/myapp/conf/nginx.conf`
-```
-daemon off;  # This is crucial for Docker
-worker_processes 1;
-error_log logs/error.log;
-events {
-    worker_connections 1024;
-}
-http {
-    server {
-	listen 80;
-	location / {
-	    default_type text/html;
-	    content_by_lua '
-		ngx.say("<p>Hey! Love from Lua</p>")
-	    ';
-	}
+
+    daemon off;  # This is crucial for Docker
+    worker_processes 1;
+    error_log logs/error.log;
+    events {
+        worker_connections 1024;
     }
-}
-```
+    http {
+        server {
+            listen 80;
+            location / {
+                default_type text/html;
+                content_by_lua 'ngx.say("<p>Hey! Love from Lua</p>")';
+            }
+        }
+    }
 
 ### Run the docker container!
 
